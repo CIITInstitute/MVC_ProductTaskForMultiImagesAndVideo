@@ -1,0 +1,50 @@
+﻿@model MVC_ProductTaskForMultiImagesAndVideo.Models.tblproduct
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddProduct</title>
+</head>
+<body>
+    <div> 
+        <h2>Add New Product</h2>
+        @using(Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                <table>
+                    <tr>
+                        <td>Product Name</td>
+                        <td>@Html.TextBoxFor(e => e.productName)</td>
+                    </tr>
+                    <tr>
+                        <td>Product Rate</td>
+                        <td>@Html.TextBoxFor(e => e.productRate)</td>
+                    </tr>
+                    <tr>
+                        <td>Upload Photos</td>
+                        <td><input type="file" name="photos" multiple /></td>
+                    </tr>
+                    <tr>
+                        <td>Upload Product Video</td>
+                        <td><input type="file" name="video" /></td>
+                    </tr>
+                    <tr>
+                        <td>Product Description</td>
+                        <td>@Html.TextAreaFor(e => e.productDescription)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Submit" />
+                        </td>
+                    </tr>
+
+                </table>
+            }
+        <h2>@ViewBag.msg</h2>
+    </div>
+</body>
+</html>

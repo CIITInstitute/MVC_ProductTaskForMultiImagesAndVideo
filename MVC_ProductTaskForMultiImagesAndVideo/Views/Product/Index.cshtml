@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MVC_ProductTaskForMultiImagesAndVideo.Models.tblproduct>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+@foreach(var item in Model)
+{
+    string[] data = System.Text.RegularExpressions.Regex.Split(item.productPhotos, ",");
+                <div>
+                    <p>Product Name:<b>@item.productName</b></p>
+                    <p>Product Rate:<b>@item.productRate</b></p>
+                    <p>Product Description:<b>@item.productDescription</b></p>
+                    <p>
+                        Product Photos:<br />
+                        @foreach (string d in data)
+                        {
+                            <img src="~/Products/@item.productName/@d" height="70" width="100" />
+                            <span> &nbsp;</span>
+                        }
+                    </p>
+                    <p>
+                        Product Video:<br />
+                        <video height="300" width="400" controls  muted>
+                            <source src="~/Products/@item.productName/@item.productVideo" />
+                        </video>
+                    </p>
+
+                </div>
+                <hr/>
+            }
+    </div>
+</body>
+</html>
